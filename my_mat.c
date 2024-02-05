@@ -11,7 +11,7 @@ void inputMat(int mat[SIZE][SIZE]){
 
 void checkRoute(int i, int j, int mat[SIZE][SIZE]){
     
-    if(i >= 0 && i < 10 && j >= 0 && j < scanf){
+    if(i >= 0 && i < SIZE && j >= 0 && j < SIZE){
         if(mat[i][j] == 0){
             printf("False");
          }

@@ -5,7 +5,7 @@
 
 int main(){
     int mat[SIZE][SIZE]; // assigning memory for the matrix
-    char option;
+    char option; // assigning memory for the chosen option
 
    while(true){
     scanf(" %c", &option);
