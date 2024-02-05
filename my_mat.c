@@ -9,19 +9,42 @@ void inputMat(int mat[SIZE][SIZE]){
     }
 }
 
-void checkRoute(int i, int j, int mat[SIZE][SIZE]){
-    
-    if(i >= 0 && i < SIZE && j >= 0 && j < SIZE){
-        if(mat[i][j] == 0){
-            printf("False");
-         }
-        if(mat[i][j] > 0){
-            printf("True");
-        }
-    } else {
-        printf("Inavlid");
+// Depth-first search to check if there is a route between i and j
+bool dfs(int i, int j, int mat[SIZE][SIZE], bool visited[SIZE]) {
+    if (i == j) {
+        return true; // Found a route
     }
-    
+
+    visited[i] = true;
+
+    for (int k = 0; k < SIZE; k++) {
+        if (adjacencyMatrix[i][k] != 0 && !visited[k]) {
+            if (dfs(k, j, mat, visited)) {
+                return true; // Found a route
+            }
+        }
+    }
+
+    return false; // No route found
+}
+
+void checkRoute(int i, int j, int mat[SIZE][SIZE]){
+    if (i >= 0 && i < SIZE && j >= 0 && j < SIZE) {
+        // Initialize an array to keep track of visited vertices
+        bool visited[SIZE] = {false};
+
+        // Call the DFS function
+        if(dfs(i, j, adjacencyMatrix, visited)){
+            printf("True");
+        } else {
+            printf("False");
+        }
+
+    } else {
+        // Invalid indices
+        printf("not possible");
+        return false;
+    }
 }
  
 int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
