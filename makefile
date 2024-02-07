@@ -17,4 +17,4 @@ my_mat.o: my_mat.c
 	$(CC) $(FLAGS) -c my_mat.c
 
 clean:
-	rm -f *.a *.o main
+	rm -f *.a *.o my_graph
