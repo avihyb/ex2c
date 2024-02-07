@@ -4,14 +4,14 @@ FLAGS = -Wall
 
 all: my_graph libmymat.a
 
-my_graph: main.o libmymat.a
-	$(CC) $(FLAGS) -o my_graph main.o -L. -lmymat
+my_graph: my_graph.o libmymat.a
+	$(CC) $(FLAGS) -o my_graph my_graph.o -L. -lmymat
 
 libmymat.a: my_mat.o 
 	$(AR) rcs libmymat.a my_mat.o
 
-main.o: main.c
-	$(CC) $(FLAGS) -c main.c
+my_graph.o: my_graph.c
+	$(CC) $(FLAGS) -c my_graph.c
 
 my_mat.o: my_mat.c
 	$(CC) $(FLAGS) -c my_mat.c
