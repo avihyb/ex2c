@@ -7,6 +7,7 @@ int main() {
     int mat[SIZE][SIZE]; // assigning memory for the matrix
     char option; // assigning memory for the chosen option
     int i, j; // declare i and j once at the beginning
+ 
 
     while (true) {
         scanf(" %c", &option);
@@ -19,14 +20,18 @@ int main() {
             case 'B':
                 scanf("%d", &i);
                 scanf("%d", &j);
+
                 checkRoute(i, j, mat);
+                
                 break;
 
             case 'C':
                 scanf("%d", &i);
                 scanf("%d", &j);
-                int d = shortestPath(i, j, mat);
-                printf("%d", d);
+                
+                int sp = shortestPath(i, j, mat);
+                printf("%d\n", sp);  // No space after 'C' result
+        
                 break;
 
             case 'D':

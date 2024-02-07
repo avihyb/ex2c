@@ -39,9 +39,9 @@ void checkRoute(int i, int j, int mat[SIZE][SIZE]) {
 
         // Call the DFS function
         if (dfs(i, j, mat, visited)) {
-            printf("True\n");
+            printf("True \n");
         } else {
-            printf("False\n");
+            printf("False \n");
         }
 
     } else {
