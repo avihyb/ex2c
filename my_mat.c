@@ -85,7 +85,7 @@ int knapSack(int weights[], int values[], int selected_bool[]) {
                 dp[i][w] = 0;
             } else if (weights[i - 1] <= w){
                 dp[i][w] = max(values[i - 1] + dp[i-1][w-weights[i-1]], dp[i-1][w]);
-                selected_bool[i] = 1;
+        
             } else {
                 dp[i][w] = dp[i-1][w];
             }
