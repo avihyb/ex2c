@@ -1,22 +1,20 @@
 AR = ar 
-GC = gcc 
+CC = gcc 
 FLAGS = -Wall
 
-all: main matlib
+all: main libmymat.a
 
-mymat: libmymat.a
-
-main: main.o mymat
-	$(GC) $(FLAGS) -o main main.o libmymat.a
+main: main.o libmymat.a
+	$(CC) $(FLAGS) -o main main.o -L. -lmymat
 
 libmymat.a: my_mat.o 
-	$(AR) rcs libmymat.a my_mat.o ranlib libmymat.a
+	$(AR) rcs libmymat.a my_mat.o
 
 main.o: main.c
-	$(GC) $(FLAGS) -c main.c
+	$(CC) $(FLAGS) -c main.c
 
 my_mat.o: my_mat.c
-	$(GC) $(FLAGS) -c my_mat.c
+	$(CC) $(FLAGS) -c my_mat.c
 
 clean:
-	rm *.so *.a *.o main
+	rm -f *.a *.o main

@@ -1,10 +1,12 @@
 #include "my_mat.h"
-#define SIZE 10
+#include <stdbool.h>
+#include <stdio.h> // Include necessary header for printf
+#define SIZE 3
 
-void inputMat(int mat[SIZE][SIZE]){
-    for(int i = 0; i < SIZE; i++){
-        for(int j = 0; j < 10; j++){
-            scanf("%d",&mat[i][j]);
+void inputMat(int mat[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            scanf("%d", &mat[i][j]);
         }
     }
 }
@@ -18,7 +20,7 @@ bool dfs(int i, int j, int mat[SIZE][SIZE], bool visited[SIZE]) {
     visited[i] = true;
 
     for (int k = 0; k < SIZE; k++) {
-        if (adjacencyMatrix[i][k] != 0 && !visited[k]) {
+        if (mat[i][k] != 0 && !visited[k]) {
             if (dfs(k, j, mat, visited)) {
                 return true; // Found a route
             }
@@ -28,29 +30,26 @@ bool dfs(int i, int j, int mat[SIZE][SIZE], bool visited[SIZE]) {
     return false; // No route found
 }
 
-void checkRoute(int i, int j, int mat[SIZE][SIZE]){
+void checkRoute(int i, int j, int mat[SIZE][SIZE]) {
     if (i >= 0 && i < SIZE && j >= 0 && j < SIZE) {
         // Initialize an array to keep track of visited vertices
         bool visited[SIZE] = {false};
 
         // Call the DFS function
-        if(dfs(i, j, adjacencyMatrix, visited)){
-            printf("True");
+        if (dfs(i, j, mat, visited)) {
+            printf("True\n");
         } else {
-            printf("False");
+            printf("False\n");
         }
 
     } else {
         // Invalid indices
-        printf("not possible");
-        return false;
+        printf("not possible\n");
     }
 }
- 
-int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
 
+int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
     if (i >= 0 && i < SIZE && j >= 0 && j < SIZE) {
-        
         // Applying Floyd-Warshall algorithm
         for (int k = 0; k < SIZE; k++) {
             for (int x = 0; x < SIZE; x++) {
@@ -68,7 +67,4 @@ int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
         // Invalid indices
         return -1;
     }
-
 }
-
-
