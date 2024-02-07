@@ -2,10 +2,10 @@ AR = ar
 CC = gcc 
 FLAGS = -Wall
 
-all: main libmymat.a
+all: my_graph libmymat.a
 
-main: main.o libmymat.a
-	$(CC) $(FLAGS) -o main main.o -L. -lmymat
+my_graph: main.o libmymat.a
+	$(CC) $(FLAGS) -o my_graph main.o -L. -lmymat
 
 libmymat.a: my_mat.o 
 	$(AR) rcs libmymat.a my_mat.o

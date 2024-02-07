@@ -1,7 +1,7 @@
 #include "my_mat.h"
 #include <stdbool.h>
 #include <stdio.h> // Include necessary header for printf
-#define SIZE 3
+#define SIZE 10
 
 void inputMat(int mat[SIZE][SIZE]) {
     for (int i = 0; i < SIZE; i++) {

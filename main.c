@@ -1,7 +1,7 @@
 #include "my_mat.h"
 #include <stdio.h>
 #include <stdbool.h>
-#define SIZE 3
+#define SIZE 10
 
 int main() {
     int mat[SIZE][SIZE]; // assigning memory for the matrix
