@@ -1,7 +1,9 @@
 #include "my_mat.h"
 #include <stdbool.h>
-#include <stdio.h> // Include necessary header for printf
+#include <stdio.h> 
 #define SIZE 10
+#define MAX_WEIGHT 20
+#define ARR_SIZE 5
 
 void inputMat(int mat[SIZE][SIZE]) {
     for (int i = 0; i < SIZE; i++) {
@@ -66,5 +68,40 @@ int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
     } else {
         // Invalid indices
         return -1;
+        }   
     }
+
+    int max(int a, int b){
+        return (a > b) ? a : b;
+    }
+
+int knapSack(int weights[], int values[], int selected_bool[]) {
+    int i, w;
+    int dp[ARR_SIZE + 1][MAX_WEIGHT + 1];
+
+    for (i = 0; i <= ARR_SIZE; i++) {
+        for (w = 0; w <= MAX_WEIGHT; w++) {
+            if (i == 0 || w == 0){
+                dp[i][w] = 0;
+            } else if (weights[i - 1] <= w){
+                dp[i][w] = max(values[i - 1] + dp[i-1][w-weights[i-1]], dp[i-1][w]);
+                selected_bool[i] = 1;
+            } else {
+                dp[i][w] = dp[i-1][w];
+            }
+        }
+    }
+
+        w = MAX_WEIGHT;
+    for (i = ARR_SIZE; i > 0 && w > 0; i--) {
+        if (dp[i][w] != dp[i-1][w]) {
+            selected_bool[i - 1] = 1;
+            w -= weights[i - 1];
+        }
+    }
+
+    return dp[ARR_SIZE][MAX_WEIGHT];
 }
+
+
+    
