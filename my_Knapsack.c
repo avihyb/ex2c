@@ -20,7 +20,7 @@ int main(){
     }
 
     ans = knapSack(weights, values, selected_bool);
-    printf("Maximum profit: %d", ans);
+    printf("Maximum profit: %d ", ans);
     printf("\nselected items:");
     int ind = 0;
     for(int i = 0; i < ARR_SIZE; i++){
