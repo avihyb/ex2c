@@ -13,41 +13,14 @@ void inputMat(int mat[SIZE][SIZE]) {
     }
 }
 
-// Depth-first search to check if there is a route between i and j
-bool dfs(int i, int j, int mat[SIZE][SIZE], bool visited[SIZE]) {
-    if (i == j) {
-        return true; // Found a route
-    }
 
-    visited[i] = true;
-
-    for (int k = 0; k < SIZE; k++) {
-        if (mat[i][k] != 0 && !visited[k]) {
-            if (dfs(k, j, mat, visited)) {
-                return true; // Found a route
-            }
-        }
-    }
-
-    return false; // No route found
-}
 
 void checkRoute(int i, int j, int mat[SIZE][SIZE]) {
-    if (i >= 0 && i < SIZE && j >= 0 && j < SIZE) {
-        // Initialize an array to keep track of visited vertices
-        bool visited[SIZE] = {false};
-
-        // Call the DFS function
-        if (dfs(i, j, mat, visited)) {
-            printf("True \n");
-        } else {
-            printf("False \n");
-        }
-
-    } else {
-        // Invalid indices
-        printf("not possible\n");
-    }
+ if(shortestPath(i, j, mat) == -1){
+    printf("False\n");
+ } else {
+    printf("True\n");
+ }
 }
 
 int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
@@ -56,18 +29,24 @@ int shortestPath(int i, int j, int mat[SIZE][SIZE]) {
         for (int k = 0; k < SIZE; k++) {
             for (int x = 0; x < SIZE; x++) {
                 for (int y = 0; y < SIZE; y++) {
-                    if (mat[x][k] + mat[k][y] < mat[x][y]) {
+                    if(x != y && mat[x][y] == 0 && mat[x][k] != 0 && mat[k][y] != 0){
                         mat[x][y] = mat[x][k] + mat[k][y];
+                    }
+                    if(mat[x][y] != 0 && mat[x][k] != 0 && mat[k][y] != 0){
+                        if (mat[x][k] + mat[k][y] < mat[x][y]) {
+                            mat[x][y] = mat[x][k] + mat[k][y];
+                        }
                     }
                 }
             }
         }
 
         // Return the shortest path length between i and j
+         if(mat[i][j] == 0){
+            return -1;
+        }
         return mat[i][j];
-    } else {
-        // Invalid indices
-        return -1;
+
         }   
     }
 
