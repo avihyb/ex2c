@@ -9,8 +9,6 @@ int main(){
     int values[ARR_SIZE];
     int selected_bool[ARR_SIZE] = {0};
     char items[ARR_SIZE];
-    char result[ARR_SIZE];
-    
     int ans;
 
     for(int i = 0; i < ARR_SIZE; i++){
@@ -25,7 +23,6 @@ int main(){
     int ind = 0;
     for(int i = 0; i < ARR_SIZE; i++){
         if(selected_bool[i]){
-            result[ind] = items[i];
             printf(" %c", items[i]);
         }
     }
